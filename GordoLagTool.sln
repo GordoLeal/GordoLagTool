@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GordoLagTool", "GordoLagTool.csproj", "{06C2C9F0-7C48-49B5-B056-D0DF870F8B7F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{06C2C9F0-7C48-49B5-B056-D0DF870F8B7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06C2C9F0-7C48-49B5-B056-D0DF870F8B7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06C2C9F0-7C48-49B5-B056-D0DF870F8B7F}.Debug|x64.ActiveCfg = Debug|x64
+		{06C2C9F0-7C48-49B5-B056-D0DF870F8B7F}.Debug|x64.Build.0 = Debug|x64
+		{06C2C9F0-7C48-49B5-B056-D0DF870F8B7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06C2C9F0-7C48-49B5-B056-D0DF870F8B7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06C2C9F0-7C48-49B5-B056-D0DF870F8B7F}.Release|x64.ActiveCfg = Release|x64
+		{06C2C9F0-7C48-49B5-B056-D0DF870F8B7F}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4703577F-1B9D-4D8B-839B-97E02BBF222C}
+	EndGlobalSection
+EndGlobal
