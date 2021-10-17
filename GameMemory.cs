@@ -14,6 +14,8 @@ namespace GordoLagTool
         const int PROCESS_VM_READ = 0x0010;
         const int PROCESS_VM_WRITE = 0x0020;
         const string SPONGE_NAME = "SpongeBob";
+
+        private RevisionList.GameRevision REV_INFO;
         
         IntPtr wPointer;
         int processId = 0;
@@ -34,8 +36,23 @@ namespace GordoLagTool
             ins = this;
         }
 
+        public bool SetGameRevision(int rev)
+        {
+            RevisionList rl = new RevisionList();
+            foreach(RevisionList.GameRevision i in rl.ReturnRevisionList())
+            {
+                if (i.revision == rev)
+                {
+                    REV_INFO = i;
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public bool DoSetup() 
         {
+
             wPointer = WinAPI.GetWindowHandlerByName(SPONGE_NAME);
             if (!(wPointer != IntPtr.Zero))
             {
@@ -48,7 +65,7 @@ namespace GordoLagTool
 
             if (processId <1)
             {
-                StartScreen.mainScreen.AddInfoToList("[Warning] processId is less then 1? but why? program may crash");
+                StartScreen.mainScreen.AddInfoToList("[WARNING] processId is less then 1? but why? program may crash");
             }
 
             gameProccess = Process.GetProcessById(processId);
@@ -63,7 +80,7 @@ namespace GordoLagTool
                 if (i.ModuleName == "Pineapple-Win64-Shipping.exe")
                 {
                     gameMainModule = i;
-                    StartScreen.mainScreen.AddInfoToList("[Info] Game Is: open! reading memory address");
+                    StartScreen.mainScreen.AddInfoToList("[INFO] Game Is: open! reading memory address");
                     break;
                 }
                 else
@@ -73,8 +90,8 @@ namespace GordoLagTool
                 }
             }
 
-            baseAddress = (gameMainModule.BaseAddress + 0x03414EA0);
-            finalAddress = FindMyAdress(openProcessHandler, baseAddress, offsets);
+            baseAddress = (gameMainModule.BaseAddress + REV_INFO.MainPointer);
+            finalAddress = FindMyAdress(openProcessHandler, baseAddress, REV_INFO.offsets);
 
             return true;
         }
@@ -87,7 +104,7 @@ namespace GordoLagTool
             return WinAPI.WriteProcessMemory(openProcessHandler, finalAddress, writerBuffer, writerBuffer.Length, ref bytesWritten);
         }
 
-        public bool ReadFPS(out byte[] buffer)
+        public bool ReadMemoryAddress(out byte[] buffer)
         {
             buffer = new byte[4];
             bool error = WinAPI.ReadProcessMemory(openProcessHandler, finalAddress, buffer, buffer.Length, out var read);

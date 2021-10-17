@@ -13,16 +13,14 @@ namespace GordoLagTool
     public partial class StartScreen : Form
     {
         public static StartScreen mainScreen;
-
         public StartScreen()
         {
             InitializeComponent();
 
             mainScreen = this;
             GameMemory.ins = new GameMemory();
+            RevisionList.ins = new RevisionList();
             HotKeyInput.SetupInputHook();
-            GameMemory.ins.DoSetup();
-
 
             FormClosing += WindowClosing;
         }
@@ -37,19 +35,9 @@ namespace GordoLagTool
 
         }
 
-
         public void AddInfoToList(string info)
         {
             DataInfo.Items.Add(info);
-        }
-        private void DataInfo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void FPSLAG_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -69,15 +57,30 @@ namespace GordoLagTool
                 Program.ins.MAX_FPS = (float)FPS_NORMAL.Value;
                 Program.ins.MIN_FPS = (float)FPS_LAG.Value;
                 Program.ins.MAIN_BUTTON = Convert.ToInt32(ButtonCode.Text, 16);
-                AddInfoToList("[Info] done!");
-                AddInfoToList("[Warning] This application will not save this configuration between loads, Gordo = Lazy");
+                AddInfoToList("[Warning] This application will not save this configuration between restarts, Gordo = Lazy");
             }
             catch
             {
                 AddInfoToList("[ERROR] Something is not right");
                 AddInfoToList("[ERROR] make sure you did place the correct value in Button. Ex: 0xA0");
             }
-            
+
+            foreach(RevisionList.GameRevision i in RevisionList.ins.ReturnRevisionList())
+            {
+                if (i.revision == int.Parse(GameRevisionBox.SelectedItem.ToString()))
+                {
+                    GameMemory.ins.SetGameRevision(i.revision);
+                    AddInfoToList($"[INFO] Game rev is: {i.revision}");
+                    break;
+                }
+            }
+
+            GameMemory.ins.DoSetup();
+        }
+
+        private void GameRevisionBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveButton.Enabled = true;
         }
     }
 }

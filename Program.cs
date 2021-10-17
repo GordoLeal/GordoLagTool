@@ -9,7 +9,7 @@ namespace GordoLagTool
     class Program
     {
         public static Program ins;
-        private static bool lagging = false;
+        public bool lagging = false;
 
         public float MIN_FPS = 2;
         public float MAX_FPS = 60;
@@ -34,7 +34,7 @@ namespace GordoLagTool
             StartScreen.mainScreen.AddInfoToList($"[INFO] FPS set to {MIN_FPS} f");
             GameMemory.ins.WriteFPS(MIN_FPS);
             lagging = true;
-
+            
         }
 
         public void StopLag()

@@ -76,6 +76,7 @@
     <Compile Include="HotKeyInput.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RevisionList.cs" />
     <Compile Include="StartScreen.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -12,17 +12,12 @@ namespace GordoLagTool
 {
     class HotKeyInput
     {
-        
         private const int WH_KEYBOARD_LL = 13;
         private const int WM_KEYDOWN = 0x0100;
         private const int WM_UP = 0x0101;
         private static IntPtr HookID = IntPtr.Zero;
-        private const int E_KEY = 0x45;
-
-
         private delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
         private static LowLevelKeyboardProc LowLevelProc = HookCallback;
-
 
         [DllImport("user32")]
         private static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);
@@ -62,8 +57,6 @@ namespace GordoLagTool
             LLKHF_UP = 0x80,
         }
 
-   
-
         public static void SetupInputHook()
         {
             HookID = SetHook(LowLevelProc);
@@ -77,15 +70,13 @@ namespace GordoLagTool
         private static IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
         {
 
-            //Ação a cada down/up de botão no teclado 
             if (nCode >= 0)
             {
                 KBDLLHOOKSTRUCT kbd = (KBDLLHOOKSTRUCT)Marshal.PtrToStructure(lParam, typeof(KBDLLHOOKSTRUCT));
-                if (kbd.vkCode == Program.ins.MAIN_BUTTON && wParam == (IntPtr)WM_KEYDOWN)
+                if (kbd.vkCode == Program.ins.MAIN_BUTTON && wParam == (IntPtr)WM_KEYDOWN && !Program.ins.lagging)
                 {
-                    //StartScreen.mainScreen.AddInfoToList("vkCode: " + kbd.vkCode + " Scancode:" + kbd.scanCode);
                     Program.ins.StartLag();
-                }else if(kbd.vkCode == Program.ins.MAIN_BUTTON && wParam == (IntPtr)WM_UP)
+                }else if(kbd.vkCode == Program.ins.MAIN_BUTTON && wParam == (IntPtr)WM_UP && Program.ins.lagging)
                 {
                     Program.ins.StopLag();
                 }

@@ -40,6 +40,8 @@ namespace GordoLagTool
             this.label3 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.SaveButton = new System.Windows.Forms.Button();
+            this.GameRevisionBox = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.FPS_NORMAL)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FPS_LAG)).BeginInit();
             this.SuspendLayout();
@@ -49,24 +51,22 @@ namespace GordoLagTool
             this.DataInfo.FormattingEnabled = true;
             this.DataInfo.Location = new System.Drawing.Point(12, 12);
             this.DataInfo.Name = "DataInfo";
-            this.DataInfo.Size = new System.Drawing.Size(415, 251);
+            this.DataInfo.Size = new System.Drawing.Size(464, 264);
             this.DataInfo.TabIndex = 0;
-            this.DataInfo.SelectedIndexChanged += new System.EventHandler(this.DataInfo_SelectedIndexChanged);
             // 
             // FPSLAG
             // 
             this.FPSLAG.AutoSize = true;
-            this.FPSLAG.Location = new System.Drawing.Point(437, 13);
+            this.FPSLAG.Location = new System.Drawing.Point(496, 13);
             this.FPSLAG.Name = "FPSLAG";
-            this.FPSLAG.Size = new System.Drawing.Size(103, 13);
+            this.FPSLAG.Size = new System.Drawing.Size(106, 13);
             this.FPSLAG.TabIndex = 1;
-            this.FPSLAG.Text = "FPS LAG (Default 2)";
-            this.FPSLAG.Click += new System.EventHandler(this.FPSLAG_Click);
+            this.FPSLAG.Text = "FPS LAG (Default: 2)";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(437, 56);
+            this.label1.Location = new System.Drawing.Point(482, 56);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(137, 13);
             this.label1.TabIndex = 3;
@@ -74,7 +74,7 @@ namespace GordoLagTool
             // 
             // FPS_NORMAL
             // 
-            this.FPS_NORMAL.Location = new System.Drawing.Point(454, 72);
+            this.FPS_NORMAL.Location = new System.Drawing.Point(511, 72);
             this.FPS_NORMAL.Name = "FPS_NORMAL";
             this.FPS_NORMAL.Size = new System.Drawing.Size(64, 20);
             this.FPS_NORMAL.TabIndex = 5;
@@ -87,7 +87,7 @@ namespace GordoLagTool
             // 
             // FPS_LAG
             // 
-            this.FPS_LAG.Location = new System.Drawing.Point(454, 29);
+            this.FPS_LAG.Location = new System.Drawing.Point(511, 29);
             this.FPS_LAG.Name = "FPS_LAG";
             this.FPS_LAG.Size = new System.Drawing.Size(64, 20);
             this.FPS_LAG.TabIndex = 6;
@@ -102,7 +102,7 @@ namespace GordoLagTool
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(437, 95);
+            this.label2.Location = new System.Drawing.Point(495, 95);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(104, 13);
             this.label2.TabIndex = 7;
@@ -110,7 +110,7 @@ namespace GordoLagTool
             // 
             // ButtonCode
             // 
-            this.ButtonCode.Location = new System.Drawing.Point(454, 137);
+            this.ButtonCode.Location = new System.Drawing.Point(511, 124);
             this.ButtonCode.Name = "ButtonCode";
             this.ButtonCode.Size = new System.Drawing.Size(64, 20);
             this.ButtonCode.TabIndex = 8;
@@ -120,7 +120,7 @@ namespace GordoLagTool
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(437, 160);
+            this.label3.Location = new System.Drawing.Point(485, 147);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(128, 13);
             this.label3.TabIndex = 9;
@@ -129,7 +129,7 @@ namespace GordoLagTool
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(438, 114);
+            this.linkLabel1.Location = new System.Drawing.Point(485, 108);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(124, 13);
             this.linkLabel1.TabIndex = 10;
@@ -139,7 +139,8 @@ namespace GordoLagTool
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(441, 240);
+            this.SaveButton.Enabled = false;
+            this.SaveButton.Location = new System.Drawing.Point(498, 242);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(100, 23);
             this.SaveButton.TabIndex = 11;
@@ -147,11 +148,37 @@ namespace GordoLagTool
             this.SaveButton.UseVisualStyleBackColor = true;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
+            // GameRevisionBox
+            // 
+            this.GameRevisionBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.GameRevisionBox.FormattingEnabled = true;
+            this.GameRevisionBox.Items.AddRange(new object[] {
+            "611616",
+            "603899",
+            "603296",
+            "600294"});
+            this.GameRevisionBox.Location = new System.Drawing.Point(485, 187);
+            this.GameRevisionBox.Name = "GameRevisionBox";
+            this.GameRevisionBox.Size = new System.Drawing.Size(121, 21);
+            this.GameRevisionBox.TabIndex = 12;
+            this.GameRevisionBox.SelectedIndexChanged += new System.EventHandler(this.GameRevisionBox_SelectedIndexChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(508, 171);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(79, 13);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Game Revision";
+            // 
             // StartScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 278);
+            this.ClientSize = new System.Drawing.Size(628, 291);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.GameRevisionBox);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label3);
@@ -185,5 +212,7 @@ namespace GordoLagTool
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Button SaveButton;
+        private System.Windows.Forms.ComboBox GameRevisionBox;
+        private System.Windows.Forms.Label label4;
     }
 }
