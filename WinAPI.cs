@@ -6,12 +6,7 @@ namespace GordoLagTool
 {
     class WinAPI
     {
-
-        /*
-         * Windows API - Memoria e detectar Inputs
-         */
-
-       
+        // Windows API - Memoria e detectar Inputs
         //Memory Control functions
 
         [DllImport("user32.dll")]
@@ -22,11 +17,11 @@ namespace GordoLagTool
 
 
         [DllImport("kernel32.dll", SetLastError = true)]
-        public static extern bool ReadProcessMemory(IntPtr hProcess,IntPtr lpBaseAddress,[Out] byte[] lpBuffer,int dwSize,out int lpNumberOfBytesRead);
+        public static extern bool ReadProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, [Out] byte[] lpBuffer, int dwSize, out int lpNumberOfBytesRead);
 
 
         [DllImport("kernel32.dll")]
-        public static extern IntPtr OpenProcess(uint dwDesiredAccess,bool bInheritHandle, int dwProcessId);
+        public static extern IntPtr OpenProcess(uint dwDesiredAccess, bool bInheritHandle, int dwProcessId);
 
         [DllImport("kernel32.dll")]
         public static extern uint GetLastError();

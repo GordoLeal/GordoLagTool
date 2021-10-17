@@ -80,9 +80,7 @@ namespace GordoLagTool
                 {
                     Program.ins.StopLag();
                 }
-
             }
-
             return CallNextHookEx(HookID, nCode, wParam, lParam);
         }
 

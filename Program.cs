@@ -30,11 +30,9 @@ namespace GordoLagTool
 
         public void StartLag()
         {
-
             StartScreen.mainScreen.AddInfoToList($"[INFO] FPS set to {MIN_FPS} f");
             GameMemory.ins.WriteFPS(MIN_FPS);
             lagging = true;
-            
         }
 
         public void StopLag()

@@ -16,7 +16,7 @@ namespace GordoLagTool
         const string SPONGE_NAME = "SpongeBob";
 
         private RevisionList.GameRevision REV_INFO;
-        
+
         IntPtr wPointer;
         int processId = 0;
         Process gameProccess;
@@ -26,11 +26,6 @@ namespace GordoLagTool
         IntPtr baseAddress;
         IntPtr finalAddress;
 
-        int[] offsets = {
-                 0x10,
-                0x378
-            }; //0x03414EA0 rev 603899
-
         public GameMemory()
         {
             ins = this;
@@ -39,7 +34,7 @@ namespace GordoLagTool
         public bool SetGameRevision(int rev)
         {
             RevisionList rl = new RevisionList();
-            foreach(RevisionList.GameRevision i in rl.ReturnRevisionList())
+            foreach (RevisionList.GameRevision i in rl.ReturnRevisionList())
             {
                 if (i.revision == rev)
                 {
@@ -50,7 +45,7 @@ namespace GordoLagTool
             return false;
         }
 
-        public bool DoSetup() 
+        public bool DoSetup()
         {
 
             wPointer = WinAPI.GetWindowHandlerByName(SPONGE_NAME);
@@ -63,15 +58,13 @@ namespace GordoLagTool
 
             WinAPI.GetWindowThreadProcessId(wPointer, out processId);
 
-            if (processId <1)
+            if (processId < 1)
             {
                 StartScreen.mainScreen.AddInfoToList("[WARNING] processId is less then 1? but why? program may crash");
             }
 
             gameProccess = Process.GetProcessById(processId);
             openProcessHandler = WinAPI.OpenProcess((PROCESS_VM_READ | PROCESS_VM_OPERATION | PROCESS_VM_WRITE), false, processId);
-
-
             allGameMemoryModules = gameProccess.Modules;
             gameMainModule = null;
 
@@ -110,7 +103,7 @@ namespace GordoLagTool
             bool error = WinAPI.ReadProcessMemory(openProcessHandler, finalAddress, buffer, buffer.Length, out var read);
 
             StartScreen.mainScreen.AddInfoToList("[Debug] Did he read the memory? " + error + "| Last Error: " + Marshal.GetLastWin32Error());
-            StartScreen.mainScreen.AddInfoToList("[Debug] Value found on memory: "+ BitConverter.ToSingle(buffer, 0));
+            StartScreen.mainScreen.AddInfoToList("[Debug] Value found on memory: " + BitConverter.ToSingle(buffer, 0));
             return error;
         }
 
@@ -126,8 +119,6 @@ namespace GordoLagTool
                 : ptr = IntPtr.Add(new IntPtr(BitConverter.ToInt64(buffer, 0)), i);
             }
             return ptr;
-
         }
-
     }
 }
