@@ -33,6 +33,17 @@ namespace GordoLagTool
 
             Revisions.Add(new GameRevision()
             {
+                MainPointer = 0x03429B98,
+                revision = 604909,
+                offsets = new int[]
+              {
+                    0x48,
+                    0x378
+              }
+            });
+
+            Revisions.Add(new GameRevision()
+            {
                 MainPointer = 0x03414EA0,
                 revision = 603899,
                 offsets = new int[]
@@ -40,6 +51,17 @@ namespace GordoLagTool
                     0x10,
                     0x378
                }
+            });
+
+            Revisions.Add(new GameRevision()
+            {
+                MainPointer = 0x03415F98,
+                revision = 603442,
+                offsets = new int[]
+                {
+                    0x48,
+                    0x378
+                }
             });
 
             Revisions.Add(new GameRevision()

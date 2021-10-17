@@ -154,7 +154,9 @@ namespace GordoLagTool
             this.GameRevisionBox.FormattingEnabled = true;
             this.GameRevisionBox.Items.AddRange(new object[] {
             "611616",
+            "604909",
             "603899",
+            "603442",
             "603296",
             "600294"});
             this.GameRevisionBox.Location = new System.Drawing.Point(485, 187);
