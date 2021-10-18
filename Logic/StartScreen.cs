@@ -37,6 +37,8 @@ namespace GordoLagTool
 
         public void AddInfoToList(string info)
         {
+            // i should make a better output system
+            // but since i only need to care about the first output lines i will do nothing :)
             DataInfo.Items.Add(info);
         }
 

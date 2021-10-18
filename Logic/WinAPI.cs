@@ -6,8 +6,8 @@ namespace GordoLagTool
 {
     class WinAPI
     {
-        // Windows API - Memoria e detectar Inputs
-        //Memory Control functions
+        // Windows API
+        // Memory Control functions
 
         [DllImport("user32.dll")]
         public static extern IntPtr GetWindowThreadProcessId(IntPtr hWnd, out int lpdwProcessId);
@@ -39,10 +39,5 @@ namespace GordoLagTool
             }
             return hWnd;
         }
-
-        //Inputs 
-
-
-
     }
 }

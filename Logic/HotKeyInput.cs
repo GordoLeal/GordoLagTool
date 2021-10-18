@@ -67,7 +67,7 @@ namespace GordoLagTool
             UnhookWindowsHookEx(HookID);
         }
 
-        private static IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
+        private static IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam) //call back to every single keyboard event and filter with code
         {
 
             if (nCode >= 0)

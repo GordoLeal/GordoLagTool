@@ -193,7 +193,7 @@ namespace GordoLagTool
             this.Controls.Add(this.DataInfo);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "StartScreen";
-            this.Text = "Gordo Lag Tool (v1.0)";
+            this.Text = "Gordo Lag Tool";
             this.Load += new System.EventHandler(this.StartScreen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.FPS_NORMAL)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FPS_LAG)).EndInit();

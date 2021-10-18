@@ -72,18 +72,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameMemory.cs" />
-    <Compile Include="HotKeyInput.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Logic\GameMemory.cs" />
+    <Compile Include="Logic\HotKeyInput.cs" />
+    <Compile Include="Logic\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RevisionList.cs" />
-    <Compile Include="StartScreen.cs">
+    <Compile Include="Logic\RevisionList.cs" />
+    <Compile Include="Logic\StartScreen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StartScreen.Designer.cs">
+    <Compile Include="Logic\StartScreen.Designer.cs">
       <DependentUpon>StartScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="WinAPI.cs" />
+    <Compile Include="Logic\WinAPI.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -93,7 +93,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="StartScreen.resx">
+    <EmbeddedResource Include="Logic\StartScreen.resx">
       <DependentUpon>StartScreen.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">

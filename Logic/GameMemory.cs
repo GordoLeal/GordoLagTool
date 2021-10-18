@@ -64,7 +64,7 @@ namespace GordoLagTool
             }
 
             gameProccess = Process.GetProcessById(processId);
-            openProcessHandler = WinAPI.OpenProcess((PROCESS_VM_READ | PROCESS_VM_OPERATION | PROCESS_VM_WRITE), false, processId);
+            openProcessHandler = WinAPI.OpenProcess((PROCESS_VM_READ | PROCESS_VM_OPERATION | PROCESS_VM_WRITE), false, processId); //Read process with permission to modify memory values
             allGameMemoryModules = gameProccess.Modules;
             gameMainModule = null;
 
@@ -107,7 +107,7 @@ namespace GordoLagTool
             return error;
         }
 
-        public static IntPtr FindMyAdress(IntPtr hProc, IntPtr ptr, int[] offsets)
+        public static IntPtr FindMyAdress(IntPtr hProc, IntPtr ptr, int[] offsets) //find final Memory Address by getting the BaseAddres from game module and doing the sum of every offset.
         {
             var buffer = new byte[IntPtr.Size];
             foreach (int i in offsets)
