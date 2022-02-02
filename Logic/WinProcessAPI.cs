@@ -4,14 +4,29 @@ using System.Runtime.InteropServices;
 
 namespace GordoLagTool
 {
-    class WinAPI
-    {
-        // Windows API
-        // Memory Control functions
+    //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+    // === WINDOWS READ/WRITE MEMORY API ===
+    //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
+    class WinProcessAPI
+    {      
+        /// <summary>
+        /// Get application processID by using the application Window Thread.
+        /// </summary>
+        /// <param name="hWnd">Window Handler</param>
+        /// <param name="lpdwProcessId">output: process ID</param>
         [DllImport("user32.dll")]
         public static extern IntPtr GetWindowThreadProcessId(IntPtr hWnd, out int lpdwProcessId);
 
+        /// <summary>
+        /// with process and memory Adresses, get value in byte and apply to that address.
+        /// </summary>
+        /// <param name="hProcess">Process Handler ID</param>
+        /// <param name="lpBaseAddress"> The memory address you want to modify </param>
+        /// <param name="lpBuffer"> byte array of the value</param>
+        /// <param name="dwSize"> byte array size</param>
+        /// <param name="lpNumberOfBytesWritten">i honestly don't know what this do, just set to 0</param>
+        /// <returns></returns>
         [DllImport("kernel32.dll", SetLastError = true)]
         public static extern bool WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, int dwSize, ref int lpNumberOfBytesWritten);
 
@@ -23,8 +38,8 @@ namespace GordoLagTool
         [DllImport("kernel32.dll")]
         public static extern IntPtr OpenProcess(uint dwDesiredAccess, bool bInheritHandle, int dwProcessId);
 
-        [DllImport("kernel32.dll")]
-        public static extern uint GetLastError();
+        //[DllImport("kernel32.dll")]
+        //public static extern uint GetLastError();
 
         public static IntPtr GetWindowHandlerByName(string winName)
         {

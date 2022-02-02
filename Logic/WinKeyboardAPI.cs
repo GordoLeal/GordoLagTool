@@ -1,33 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
-using System.Windows.Input;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace GordoLagTool
 {
-    class HotKeyInput
+    class WinKeyboardAPI
+
     {
+
+        //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        // === WINDOWS READ/HOOK KEYBOARD API ===
+        //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
         private const int WH_KEYBOARD_LL = 13;
         private const int WM_KEYDOWN = 0x0100;
         private const int WM_UP = 0x0101;
         private static IntPtr HookID = IntPtr.Zero;
         private delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
         private static LowLevelKeyboardProc LowLevelProc = HookCallback;
-
+        /*
         [DllImport("user32")]
-        private static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);
+        private static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk); */
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         private static extern bool UnhookWindowsHookEx(IntPtr hhk);
 
-        [DllImport("user32")]
-        private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+        //[DllImport("user32")]
+        //private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern IntPtr CallNextHookEx(IntPtr hhk, int nCode, IntPtr wParam, IntPtr lParam);
@@ -57,28 +58,29 @@ namespace GordoLagTool
             LLKHF_UP = 0x80,
         }
 
-        public static void SetupInputHook()
+        public static void SetupInputHook() // start hook to keyboard inputs
         {
             HookID = SetHook(LowLevelProc);
         }
 
-        public static void RemoveInputHook()
+        public static void RemoveInputHook() //Make sure to remove the keyboard hook or will can have memory leaks and other problems.
         {
             UnhookWindowsHookEx(HookID);
         }
 
         private static IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam) //call back to every single keyboard event and filter with code
         {
-
+            
             if (nCode >= 0)
             {
+                Console.WriteLine("Reading keyboard");
                 KBDLLHOOKSTRUCT kbd = (KBDLLHOOKSTRUCT)Marshal.PtrToStructure(lParam, typeof(KBDLLHOOKSTRUCT));
-                if (kbd.vkCode == Program.ins.MAIN_BUTTON && wParam == (IntPtr)WM_KEYDOWN && !Program.ins.lagging)
+                if (kbd.vkCode == MainLogic.MAIN_BUTTON && wParam == (IntPtr)WM_KEYDOWN && !MainLogic.lagging)
                 {
-                    Program.ins.StartLag();
-                }else if(kbd.vkCode == Program.ins.MAIN_BUTTON && wParam == (IntPtr)WM_UP && Program.ins.lagging)
+                    MainLogic.StartLag();
+                }else if(kbd.vkCode == MainLogic.MAIN_BUTTON && wParam == (IntPtr)WM_UP && MainLogic.lagging)
                 {
-                    Program.ins.StopLag();
+                    MainLogic.StopLag();
                 }
             }
             return CallNextHookEx(HookID, nCode, wParam, lParam);
