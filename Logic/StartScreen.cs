@@ -18,7 +18,6 @@ namespace GordoLagTool
             mainScreen = this;
             //start class instances
             GameMemory.ins = new GameMemory();
-            RevisionList.ins = new RevisionList();
             //Setup hook to keyboard, so the program can register inputs.
             WinKeyboardAPI.SetupInputHook();
             FormClosing += WindowClosing;
@@ -111,7 +110,6 @@ namespace GordoLagTool
             {
                 GameInfo gi = FileController.ReadGameInfoFromFile(entry);
                 listBox_GameNames.Items.Add(gi);
-                Console.WriteLine(gi);
             }
         }
 

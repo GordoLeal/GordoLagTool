@@ -45,7 +45,17 @@ namespace GordoLagTool
             var gameFilesFolder = Path.Combine(Application.StartupPath, gameFilesFolderName);
             var test1 = Path.Combine(gameFilesFolder, fileName);
             var test2 = File.ReadAllText(test1);
-            return JsonSerializer.Deserialize<GameInfo>(test2);
+            try
+            {
+                return JsonSerializer.Deserialize<GameInfo>(test2);
+
+            }
+            catch(JsonException e)
+            {
+                MessageBox.Show("Some file inside GameFiles is causing errors! \n \n Probably something written wrong, please follow 'Rehydrated.game' example", ".game ERROR",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+                return null;
+            }
         }
     }
 }
