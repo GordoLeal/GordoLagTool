@@ -52,8 +52,11 @@ namespace GordoLagTool
             }
             catch(JsonException e)
             {
-                MessageBox.Show("Some file inside GameFiles is causing errors! \n \n Probably something written wrong, please follow 'Rehydrated.game' example", ".game ERROR",MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
+                var result = MessageBox.Show("Some file inside GameFiles is causing errors! \n \n Probably something written wrong, please follow 'Rehydrated.game' example \n\n Do you want to see the error message?", ".game ERROR",MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                if(result == DialogResult.Yes)
+                {
+                    MessageBox.Show(e.Message);
+                }
                 return null;
             }
         }

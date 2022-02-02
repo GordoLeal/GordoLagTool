@@ -30,7 +30,7 @@ namespace GordoLagTool
 
         private void StartScreen_Load(object sender, EventArgs e)
         {
-
+            // :P
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -41,7 +41,7 @@ namespace GordoLagTool
         private void SaveButton_Click(object sender, EventArgs e)
         {
             GameMemory.ins.DoSetup();
-            EnableButtom.Enabled = true;
+            ReloadButtons(false);
         }
 
         private void GameRevisionBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -53,7 +53,7 @@ namespace GordoLagTool
         {
             if (listBox_GameNames.SelectedIndex < 0)
                 return;
-            
+
             //Game Selected
             var giSelected = (GameInfo)listBox_GameNames.Items[listBox_GameNames.SelectedIndex];
             listBox_GameVersions.Items.Clear();
@@ -82,33 +82,42 @@ namespace GordoLagTool
 
             GameMemory.ins.gameInfo = (GameInfo)listBox_GameNames.Items[listBox_GameNames.SelectedIndex];
             GameMemory.ins.patchInfo = (PatchInfo)listBox_GameVersions.Items[listBox_GameVersions.SelectedIndex];
-            button_Test.Enabled = true;
-            EnableButtom.Enabled = true;
+            ReloadButtons(true);
         }
 
         private void button_reload_Click(object sender, EventArgs e)
         {
             listBox_GameNames.Items.Clear();
             listBox_GameVersions.Items.Clear();
-
-            button_Test.Enabled = false;
-            EnableButtom.Enabled = false;
+            ReloadButtons(false);
             //reload List
             LoadFilesToList();
         }
-
+        private void ReloadButtons(bool state)
+        {
+            button_Test.Enabled = state;
+            EnableButtom.Enabled = state;
+            if (state)
+                EnableButtom.Text = "Enable Tool";
+            else
+                EnableButtom.Text = "Have Fun!";
+        }
         private void LoadFilesToList()
         {
             var entries = FileController.GetFileEntries();
             if (entries == null || entries.Length < 1)
             {
-                MessageBox.Show("GameFiles are empty, please make sure to have at least one .game file before using the tool");
+                MessageBox.Show("GameFiles are empty, please make sure to have at least one .game file before using the tool", "No .game Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             entries = FileController.RemovePathFromString(entries);
 
             foreach (var entry in entries)
             {
                 GameInfo gi = FileController.ReadGameInfoFromFile(entry);
+                if (gi == null)
+                {
+                    break;
+                }
                 listBox_GameNames.Items.Add(gi);
             }
         }
@@ -117,7 +126,7 @@ namespace GordoLagTool
         {
             GameMemory.ins.ReadMemoryAddress(out byte[] data);
             var result = BitConverter.ToSingle(data, 0);
-            MessageBox.Show($"if the value is similar to your game fps limit then the tool is working. if is not, something is wrong with the .game file.\n \n VALUE: {result}", "Memory Test");
+            MessageBox.Show($"if the value is similar to your game fps limit then the tool is working. if is not, something is wrong with the memory address or offsets on .game file.\n \n VALUE: {result}", "Memory Test");
         }
 
         private void CreatorLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
