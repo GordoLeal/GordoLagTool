@@ -139,7 +139,7 @@ namespace GordoLagTool
             this.EnableButtom.Name = "EnableButtom";
             this.EnableButtom.Size = new System.Drawing.Size(101, 23);
             this.EnableButtom.TabIndex = 11;
-            this.EnableButtom.Text = "Enable Tool";
+            this.EnableButtom.Text = "Disabled";
             this.EnableButtom.UseVisualStyleBackColor = true;
             this.EnableButtom.Click += new System.EventHandler(this.SaveButton_Click);
             // 

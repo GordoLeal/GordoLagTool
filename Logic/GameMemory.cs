@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace GordoLagTool
@@ -38,7 +37,10 @@ namespace GordoLagTool
             wPointer = WinProcessAPI.GetWindowHandlerByName(gameInfo.MainWindowName);
             if (!(wPointer != IntPtr.Zero))
             {
-                MessageBox.Show($"Game with handler {gameInfo.MainWindowName} could not be found, Remember to write correctly, including Caps");
+                MessageBox.Show($"Game with handler {gameInfo.MainWindowName} could not be found. \nPlease make sure the game is open.\nCheck the var MainWindowName on .game file, make sure it's spelled correctly, be carefull with capital letters.",
+                    "No Process found",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return false;
             }
 
@@ -46,7 +48,7 @@ namespace GordoLagTool
 
             if (processId < 1)
             {
-                MessageBox.Show("ProcessID is less than 1 for some reason, program may crash?");
+                MessageBox.Show("ProcessID is less than 1 for some reason, program may crash..?","Strange Windows Bug",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
             }
 
             openProcessHandler = WinProcessAPI.OpenProcess((PROCESS_VM_READ | PROCESS_VM_OPERATION | PROCESS_VM_WRITE), false, processId); //Read process with permission to modify memory values
@@ -62,7 +64,10 @@ namespace GordoLagTool
                 }
                 else
                 {
-                    MessageBox.Show("Could not find game Memory, is the game open?");
+                    MessageBox.Show($"Game Window with the name: '{gameInfo.MainWindowName}' found but could not find Process: '{gameInfo.ProcessName}'\nplease make sure you have only 1 version of the same game open.",
+                        "No Process found",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                     return false;
                 }
             }

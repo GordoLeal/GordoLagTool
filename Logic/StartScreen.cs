@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace GordoLagTool
@@ -40,8 +39,11 @@ namespace GordoLagTool
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            GameMemory.ins.DoSetup();
-            ReloadButtons(false);
+            if (GameMemory.ins.DoSetup())
+            {
+                button_Test.Enabled = true;
+                ReloadButtons(false);
+            }
         }
 
         private void GameRevisionBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -95,7 +97,6 @@ namespace GordoLagTool
         }
         private void ReloadButtons(bool state)
         {
-            button_Test.Enabled = state;
             EnableButtom.Enabled = state;
             if (state)
                 EnableButtom.Text = "Enable Tool";
@@ -126,7 +127,7 @@ namespace GordoLagTool
         {
             GameMemory.ins.ReadMemoryAddress(out byte[] data);
             var result = BitConverter.ToSingle(data, 0);
-            MessageBox.Show($"if the value is similar to your game fps limit then the tool is working. if is not, something is wrong with the memory address or offsets on .game file.\n \n VALUE: {result}", "Memory Test");
+            MessageBox.Show($"if the value is similar to your game fps limit then the tool is working. if is not, something is wrong with the memory address or offsets on .game file.\n \nVALUE: {result}", "Memory Test");
         }
 
         private void CreatorLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
