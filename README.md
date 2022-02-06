@@ -13,9 +13,9 @@ https://youtu.be/4r5ZPHJPSEw
 
 ## OS Support
 
-Currently the tool only works with:
+Currently the tool works with:
 
-Windows x64 [(.net Core/runtime 4.7 or above)](https://dotnet.microsoft.com/en-us/download)
+Windows - x64 [(.net Core/runtime 4.7 or above)](https://dotnet.microsoft.com/en-us/download)
 
 ### Credits
 Made By [Pedro "Gordo" Leal](https://twitter.com/OGordoLeal)
