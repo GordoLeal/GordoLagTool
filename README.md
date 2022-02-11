@@ -6,7 +6,7 @@ At first it has intended to be used with Battle For Bikini Bottom: Rehydrated bu
 
 it uses the windows api functions ReadMemory and WriteMemory to change the limit fps values inside the game, the same way you would lag by click/dragging the window top.
 
-To make it work for your game, you can find a .game file made by other runners, just ask on the game speedrun community (if they allow the use of this tool) or you can add support by yourself.
+To make it work for your game, you can find a .game file made by other runners, just ask on the game speedrun community (if they allow the use of this tool) or you can add support by yourself. by default BFFB:Rehydrated .game file is included.
 
 How to create a .game file:
 https://youtu.be/4r5ZPHJPSEw
